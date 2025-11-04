@@ -10,7 +10,7 @@
 
 <script>
 async function loadData() {
-  const res = await fetch('../results.json');
+  const res = await fetch("./results.json");
   const data = await res.json();
 
   new Chart(document.getElementById('chart'), {
