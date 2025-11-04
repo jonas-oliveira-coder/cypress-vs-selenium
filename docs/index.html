@@ -1,30 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-<title>Cypress vs Selenium Speed</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-<h2>Cypress vs Selenium Benchmark</h2>
-<canvas id="chart"></canvas>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmark Cypress vs Selenium</title>
 
-<script>
-async function loadData() {
-  const res = await fetch("./results.json");
-  const data = await res.json();
-
-  new Chart(document.getElementById('chart'), {
-    type: 'bar',
-    data: {
-      labels: ['Cypress', 'Selenium'],
-      datasets: [{
-        data: [data.cypress_ms, data.selenium_ms]
-      }]
+  <!-- Estilo minimalista moderno -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #2d3436;
     }
-  });
+    header {
+      background: #006eff;
+      color: white;
+      padding: 18px 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 25px;
+    }
+    .card-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 45%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .card h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #636e72;
+    }
+    .value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+    .chart-container {
+      margin-top: 30px;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 13px;
+      color: #7f8c8d;
+      padding-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+<header>Benchmark: Cypress vs Selenium</header>
+
+<div class="container">
+  <p>Comparação automática de desempenho entre Cypress e Selenium.<br>
+  Valores em <b>milissegundos (ms)</b>.</p>
+
+  <div class="card-container">
+    <div class="card">
+      <h2>Cypress</h2>
+      <div id="cyVal" class="value">--</div>
+    </div>
+    <div class="card">
+      <h2>Selenium</h2>
+      <div id="seVal" class="value">--</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="benchmarkChart"></canvas>
+  </div>
+
+  <p id="timestamp"></p>
+</div>
+
+<footer>
+  Atualizado automaticamente via GitHub Actions<br>
+  Criado por Jonas Oliveira 🚀
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+async function loadResults() {
+  try {
+    const res = await fetch("./results.json");
+    const data = await res.json();
+
+    document.getElementById("cyVal").textContent = data.cypress_ms + " ms";
+    document.getElementById("seVal").textContent = data.selenium_ms + " ms";
+    document.getElementById("timestamp").textContent =
+      "Última atualização: " + new Date(data.timestamp).toLocaleString();
+
+    new Chart(document.getElementById("benchmarkChart"), {
+      type: "bar",
+      data: {
+        labels: ["Cypress", "Selenium"],
+        datasets: [{
+          label: "Tempo (ms)",
+          data: [data.cypress_ms, data.selenium_ms]
+        }]
+      }
+    });
+
+  } catch (e) {
+    document.getElementById("timestamp").textContent =
+      "Nenhum resultado disponível ainda.";
+  }
 }
 
-loadData();
+loadResults();
 </script>
 </body>
 </html>
