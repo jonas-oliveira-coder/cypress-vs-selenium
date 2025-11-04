@@ -29,10 +29,15 @@ jobs:
       - name: Save benchmark results
         run: bash scripts/save_results.sh
 
+      - name: Move results.json to docs
+        run: |
+          mkdir -p docs
+          mv results.json docs/results.json
+
       - name: Commit results
         run: |
           git config --global user.name "Benchmark Bot"
           git config --global user.email "bot@example.com"
-          git add results.json
+          git add docs/results.json
           git commit -m "ci: update benchmark results" || echo "No changes"
           git push
