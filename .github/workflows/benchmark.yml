@@ -1,0 +1,28 @@
+name: Benchmark Cypress vs Selenium
+
+on:
+  push:
+  schedule:
+    - cron: "0 * * * *" # hourly
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+
+    - name: Run benchmark
+      run: |
+        bash scripts/save_results.sh
+
+    - name: Commit results
+      run: |
+        git config --global user.name "Benchmark Bot"
+        git config --global user.email "bot@example.com"
+        git add results.json
+        git commit -m "update benchmark"
+        git push

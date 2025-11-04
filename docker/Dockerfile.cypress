@@ -1,5 +1,7 @@
 FROM cypress/included:12.17.0
 WORKDIR /app
-COPY cypress/ .
+COPY . /app
+COPY cypress ./cypress
+COPY package.json .
 RUN npm install
 CMD ["npx", "cypress", "run"]

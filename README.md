@@ -1,97 +1,106 @@
-## 📄 README.md
+# Cypress vs Selenium — Benchmark de Performance ⚡🧪
 
-# Cypress vs Selenium — Teste de Performance 🧪⚡
+Este projeto compara o tempo de execução entre **Cypress** e **Selenium (Python)** em um cenário simples de automação E2E.
 
-Este projeto tem como objetivo comparar o tempo de execução entre **Cypress** e **Selenium (Python)** em um cenário simples de teste automatizado.
+O teste realiza as ações:
 
-O teste consiste em:
-- Acessar `https://example.cypress.io`
-- Verificar o texto **"Kitchen Sink"**
-- Medir o tempo total do teste
+* Acessar `https://example.cypress.io`
+* Validar o texto **"Kitchen Sink"**
+* Medir o tempo total de execução
+
+O objetivo é demonstrar, de forma prática e transparente, o desempenho de cada ferramenta em um caso básico.
 
 ---
 
-## 🏗️ Estrutura do Projeto
-
+## 📂 Estrutura do Projeto
 
 ```
 cypress-vs-selenium/
-│── cypress/
-│── selenium/
-│── docker/
-│── docker-compose.yml
-└── .github/workflows/ci.yml
-````
+├── cypress/              # Teste Cypress
+├── selenium/             # Teste Selenium (Python)
+├── docker/               # Dockerfiles
+├── docs/                 # GitHub Pages (gráfico)
+├── results.json          # Resultados atualizados
+├── docker-compose.yml
+└── .github/workflows/    # Pipeline CI
+```
 
 ---
 
-## 🚀 Tecnologias
+## 🛠️ Tecnologias
 
-| Ferramenta | Uso |
-|-----------|-----|
-| Cypress | Teste E2E |
-| Selenium + Python | Teste E2E |
-| Docker | Containerização |
-| Docker Compose | Orquestração |
-| GitHub Actions | CI/CD |
+| Tecnologia        | Função                             |
+| ----------------- | ---------------------------------- |
+| Cypress           | Automação E2E                      |
+| Selenium + Python | Automação E2E                      |
+| Docker            | Containers                         |
+| Docker Compose    | Orquestração                       |
+| GitHub Actions    | Execução CI e benchmark automático |
+| Chart.js          | Gráfico no GitHub Pages            |
 
 ---
 
-## 🐳 Execução com Docker
-
-### Build e execução
+## 🐳 Executando localmente com Docker
 
 ```bash
 docker compose up --build
-````
+```
 
-Isso irá:
-✅ Construir as imagens do Cypress e Selenium
-✅ Executar ambos os testes
-✅ Exibir o tempo de execução no terminal
+O comando irá:
+
+✅ Construir as imagens
+✅ Rodar Selenium e Cypress
+✅ Exibir os tempos no terminal
 
 ---
 
-## 🧪 Resultado esperado
+## 📈 Resultados esperados
 
-Exemplo de saída aproximada:
+Exemplo aproximado:
 
 ```
-Cypress Execution time: ~300–600ms
-Selenium Execution time: ~800–2000ms
+Cypress: 300–600ms
+Selenium: 800–2000ms
 ```
 
-> Valores variam conforme máquina, rede e ambiente de execução.
+> Os valores variam conforme hardware, rede e ambiente.
 
 ---
 
-## ⚙️ CI — GitHub Actions
+## 🤖 CI Automatizado
 
-Este repositório contém pipeline que executa os dois testes automaticamente a cada push.
+O projeto conta com pipeline no **GitHub Actions** que:
 
-Arquivo: `.github/workflows/ci.yml`
+* Executa os testes periodicamente
+* Atualiza o arquivo `results.json`
+* Publica o gráfico automaticamente no GitHub Pages
+
+---
+
+## 🌐 Dashboard (GitHub Pages)
+
+O gráfico com os resultados pode ser visualizado em:
+
+```
+https://SEU-USUARIO.github.io/cypress-vs-selenium
+```
 
 ---
 
 ## 🎯 Objetivo
 
-Comparação simples e prática para demonstrar:
+Este projeto tem fins educacionais e serve para demonstrar:
 
-* Tempo de execução
-* Facilidade de setup
-* Diferenças no fluxo de automação
+* Diferenças no tempo de execução
+* Simplicidade de configuração
+* Fluxo básico de automação em cada stack
 
----
-
-## 📌 Observação
-
-Este projeto **não busca definir qual ferramenta é melhor**, pois cada uma possui vantagens.
-Foco exclusivo: **tempo e experiência de execução para um teste básico**.
+> Não é uma disputa para definir “qual é melhor”, e sim uma comparação prática.
 
 ---
 
-## 👨‍💻 Autor
+## 👤 Autor
 
-Projeto criado para estudo e comparação de ferramentas de automação E2E.
+Projeto criado para estudo e referência em automação E2E e CI.
 
 ---

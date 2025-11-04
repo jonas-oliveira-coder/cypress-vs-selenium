@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cypress vs Selenium Speed</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h2>Cypress vs Selenium Benchmark</h2>
+<canvas id="chart"></canvas>
+
+<script>
+async function loadData() {
+  const res = await fetch('../results.json');
+  const data = await res.json();
+
+  new Chart(document.getElementById('chart'), {
+    type: 'bar',
+    data: {
+      labels: ['Cypress', 'Selenium'],
+      datasets: [{
+        data: [data.cypress_ms, data.selenium_ms]
+      }]
+    }
+  });
+}
+
+loadData();
+</script>
+</body>
+</html>
