@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  cypress:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.cypress
+
+  selenium:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.selenium

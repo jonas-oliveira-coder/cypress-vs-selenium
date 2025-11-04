@@ -1,0 +1,19 @@
+name: Cypress vs Selenium Speed Test
+
+on: [push]
+
+jobs:
+
+  cypress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker compose build cypress
+      - run: docker compose run cypress
+
+  selenium:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker compose build selenium
+      - run: docker compose run selenium

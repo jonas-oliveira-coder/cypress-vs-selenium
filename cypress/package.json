@@ -1,0 +1,6 @@
+{
+  "name": "cypress-speed-test",
+  "devDependencies": {
+    "cypress": "^13.0.0"
+  }
+}

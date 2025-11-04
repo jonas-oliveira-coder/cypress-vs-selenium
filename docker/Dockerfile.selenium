@@ -1,0 +1,6 @@
+FROM python:3.11
+WORKDIR /app
+COPY selenium/ .
+RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y chromium-driver chromium
+CMD ["python", "test_speed.py"]
