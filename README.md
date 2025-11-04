@@ -82,7 +82,7 @@ O projeto conta com pipeline no **GitHub Actions** que:
 O gráfico com os resultados pode ser visualizado em:
 
 ```
-https://SEU-USUARIO.github.io/cypress-vs-selenium
+https://jonas-oliveira-coder.github.io/cypress-vs-selenium
 ```
 
 ---
